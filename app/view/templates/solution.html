@@ -1,0 +1,21 @@
+<li hx-on::after-request="if (event.detail.xhr.status === 204) this.remove()">
+    <div class="solution-item">
+        <span class="time">{{ solution.time }}</span>
+        <i class="fa-solid fa-skull-crossbones dnf {% if solution.dnf %} disabled {% endif %}" 
+            {% if not solution.dnf %} 
+                hx-patch="/solutions?id={{ solution.id }}&action=dnf" 
+                hx-target="closest li"
+                hx-swap="outerHTML"
+            {% endif %}>
+        </i>
+        <span class="penalty {% if solution.penalty %} disabled {% endif %}" 
+            {% if not solution.penalty %} 
+                hx-patch="/solutions?id={{ solution.id }}&action=penalty" 
+                hx-target="closest li"
+                hx-swap="outerHTML"
+            {% endif %}>+2
+        </span>
+        <i class="fa-solid fa-trash-can delete" hx-delete="/solutions?id={{ solution.id }}"></i>
+        <span class="details" hx-get="/solutions/details?id={{ solution.id }}" hx-target="body" hx-swap="afterbegin">Details</span>
+    </div>
+</li>

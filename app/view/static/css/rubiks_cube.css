@@ -1,0 +1,164 @@
+.scene {
+    perspective: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scene.mini {
+    width: 60px;
+    height: 60px;
+}
+
+.scene:not(.mini) {
+    width: 200px;
+    height: 200px;
+}
+
+.cube {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(-30deg);
+}
+
+.scene.mini .cube {
+    width: 30px;
+    height: 30px;
+}
+
+.scene:not(.mini) .cube {
+    width: 120px;
+    height: 120px;
+}
+
+.cube-side {
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    border: 2px solid black;
+    display: grid;
+    border-radius: 1px;
+    gap: 1px;
+}
+
+.\32 x2x2 .cube-side {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.\33 x3x3 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.\34 x4x4 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.\35 x5x5 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.\36 x6x6 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.\37 x7x7 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.\38 x8x8 .cube-side {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.\39 x9x9 .cube-side {
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr 1fr;
+}
+
+.cube-side div {
+    border-radius: 1px;
+    transition: background-color .2s;
+}
+
+.scene.mini .cube-side.F {
+    transform: translateZ(15px);
+}
+
+.scene:not(.mini) .cube-side.F {
+    transform: translateZ(60px);
+}
+
+.cube.inactive .cube-side.F div {
+    background-color: rgb(56, 56, 56);
+}
+
+.cube.active .cube-side.F div, .nav-links li a:hover .cube.inactive .cube-side.F div {
+    background-color: red;
+}
+
+.scene.mini .cube-side.U {
+    transform: rotateX(90deg) translateZ(15px);
+}
+
+.scene:not(.mini) .cube-side.U {
+    transform: rotateX(90deg) translateZ(60px);
+}
+
+.cube.inactive .cube-side.U div {
+    background-color: rgb(176, 176, 176);
+}
+
+.cube.active .cube-side.U div, .nav-links li a:hover .cube.inactive .cube-side.U div {
+    background-color: var(--text);
+}
+
+.scene.mini .cube-side.R {
+    transform: rotateY(90deg) translateZ(15px);
+}
+
+.scene:not(.mini) .cube-side.R {
+    transform: rotateY(90deg) translateZ(60px);
+}
+
+.cube.inactive .cube-side.R div {
+    background-color: rgb(44, 44, 44);
+}
+
+.cube.active .cube-side.R div, .nav-links li a:hover .cube.inactive .cube-side.R div {
+    background-color: rgb(39, 39, 255);
+}
+
+
+.scene.mini:has(.\32 x2x2) {
+    transform: scale(.95);
+}
+
+.scene.mini:has(.\34 x4x4) {
+    transform: scale(1.05);
+}
+
+.scene.mini:has(.\35 x5x5) {
+    transform: scale(1.1);
+}
+
+.scene.mini:has(.\36 x6x6) {
+    transform: scale(1.15);
+}
+
+.scene.mini:has(.\37 x7x7) {
+    transform: scale(1.2);
+}
+
+.scene.mini:has(.\38 x8x8) {
+    transform: scale(1.25);
+}
+
+.scene.mini:has(.\39 x9x9) {
+    transform: scale(1.3);
+}

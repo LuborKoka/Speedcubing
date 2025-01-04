@@ -1,0 +1,8 @@
+<div id="scramble">
+    <input name="scramble" value="{{ '_'.join(scramble) }}" type="hidden"/>
+    <p>
+        {% for move in scramble %}
+        <span>{{ move }}</span>
+        {% endfor %}
+    </p>
+</div>

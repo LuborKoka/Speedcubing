@@ -1,0 +1,23 @@
+<div class="popup-framefix" hx-on:click="this.remove()">
+    <section class="popup" hx-on:click="event.stopPropagation()">
+        <table class="solution-details-table">
+            <thead>
+                <tr>
+                    <th>Solve</th>
+                    <th>Time</th>
+                    <th>Scramble</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for s in details %}
+                <tr>
+                    <td>{{ loop.index }}.</td>
+                    <td>{{ s.time_str }}</td>
+                    <td>{{ s.scramble }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>

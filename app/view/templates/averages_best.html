@@ -1,0 +1,28 @@
+<div id="personal_best" hx-trigger="new_pb from:body" hx-get="/solutions/best?puzzle={{ puzzle }}" hx-target="#personal_best">
+    <b class="mini-heading">personal best</b>
+    <p class="timings-item">
+        <span>single:</span>
+        <span>{{ personal_best.single.time_str }}</span>
+        {% if personal_best.single.pb is not none %}
+            <span class="details" hx-get="/solutions/details?id={{ personal_best.single.pb.id }}" hx-target="body" hx-swap="afterbegin">Details</span>
+        {% endif %}
+    </p>
+    <p class="timings-item">
+        <span>Average of 5:</span> 
+        <span>{{ personal_best.avg_five.time_str }}</span>
+        {% if personal_best.avg_five.pb is not none %}
+            <span class="details" hx-get="/solutions/details?id={{ personal_best.avg_five.pb.id }}" hx-target="body" hx-swap="afterbegin">Details</span>
+        {% endif %}
+    </p>
+    <p class="timings-item">
+        <span>Average of 12:</span>
+        <span>{{ personal_best.avg_twelve.time_str }}</span>
+        {% if personal_best.avg_twelve.pb is not none %}
+            <span class="details" hx-get="/solutions/details?id={{ personal_best.avg_twelve.pb.id }}" hx-target="body" hx-swap="afterbegin">Details</span>
+        {% endif %}
+    </p>
+    <p class="timings-item">
+        <span>Mean of 100:</span>
+        <span>{{ personal_best.mean_hundred.time_str }}</span>
+    </p>
+</div>

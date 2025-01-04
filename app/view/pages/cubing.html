@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/htmx.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/cubing.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/rubiks_cube.css" />
+    <script src="https://kit.fontawesome.com/4e34836926.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/icon-32x32.png" />
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            {% for cube in cubes %}
+                <li>
+                    <a href="./{{ cube.puzzle }}">
+                        <div class="scene mini">
+                            <div class="cube {{ cube.puzzle }} {{ cube.status }}">
+                                {% for side in ['F', 'R', 'U'] %}
+                                    <div class="cube-side {{ side }}">
+                                        {% for i in range(cube.size ** 2) %}
+                                            <div></div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {{ cube.size }}x{{ cube.size }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+
+    <div id="porno" style="padding: 2rem 10%">
+        <section class="card">
+            <form hx-post="/solutions?puzzle={{ puzzle }}" hx-target="aside.card ol" hx-swap="afterbegin" hx-on::after-request="if (event.detail.xhr.status === 201) clearInputAndScramble()" hx-on::before-request="validateInput('{{ puzzle }}')">
+                <!-- clearInputAndScramble() sa bude istotne dat nahradit hx eventom-->
+                {% include 'templates/scramble.html' %}
+                <input name="solution_time" autocomplete="off" autofocus/>
+                <button hx-on::config-request="this.disabled = true" hx-on::after-request="this.disabled = false">Submit</button>
+            </form>
+        </section>
+
+
+        <section class="card" style="padding: 2rem 4rem 2rem 3rem">
+            {% include 'templates/averages_current.html' %}
+            {% include 'templates/averages_best.html' %}
+        </section>
+
+        <div></div>
+
+        <aside class="card">
+            <ol>
+                {% for solution in solutions.list %}
+                    {% include 'templates/solution.html' %}
+                {% endfor %}
+
+                {% if solutions.cursor is not none %}
+                    <li id="show-more" hx-get="/solutions?puzzle={{ puzzle }}&cursor={{ solutions.cursor }}" hx-target="this" hx-swap="outerHTML">Show More</li>
+                {% endif %}
+            </ol>
+        </aside>
+
+    </div>
+
+
+    <script src="/static/js/index.js"></script>
+</body>
+</html>
+

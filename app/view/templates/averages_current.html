@@ -1,0 +1,21 @@
+<div id="current_averages" hx-get="/solutions/current?puzzle={{ puzzle }}" hx-trigger="new_current from:body" hx-target="this" hx-swap="outerHTML">
+    <b class="mini-heading">current</b>
+    <p class="timings-item">
+        <span>Average of 5:</span>
+        <span>{{ current_averages.avg_five.time_str }}</span>
+        {% if current_averages.avg_five.time is not none %}
+            <span class="details" hx-get="/solutions/details?id=avg_five&puzzle={{ puzzle }}" hx-target="body" hx-swap="afterbegin">Details</span>
+        {% endif %}
+    </p>
+    <p class="timings-item">
+        <span>Average of 12:</span>
+        <span>{{ current_averages.avg_twelve.time_str }}</span>
+        {% if current_averages.avg_twelve.time is not none %}
+            <span class="details" hx-get="/solutions/details?id=avg_twelve&puzzle={{ puzzle }}" hx-target="body" hx-swap="afterbegin">Details</span>
+        {% endif %}
+    </p>
+    <p class="timings-item">
+        <span>Mean of 100:</span>
+        <span>{{ current_averages.mean_hundred.time_str }}</span>
+    </p>
+</div>
