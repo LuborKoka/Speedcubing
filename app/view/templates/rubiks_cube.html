@@ -1,0 +1,11 @@
+<div class="scene {{ scene_class | default('') }}">
+    <div class="cube {{ cube.puzzle }} {{ cube.status }}">
+        {% for side in ['F', 'R', 'U'] %}
+            <div class="cube-side {{ side }}">
+                {% for i in range(cube.size ** 2) %}
+                    <div></div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
