@@ -1,3 +1,7 @@
+from fastapi.templating import Jinja2Templates
+
+
+TEMPLATES = Jinja2Templates(directory="./app/view")
 CUBES = [
     {'size': 2, 'puzzle': '2x2x2', 'status': 'inactive'},
     {'size': 3, 'puzzle': '3x3x3', 'status': 'inactive'},

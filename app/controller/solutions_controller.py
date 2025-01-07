@@ -1,7 +1,7 @@
 from fastapi import Response, status
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlmodel import Session
+from app.constants import TEMPLATES
 from app.db.db_helpers import get_model_by_id
 from app.model.personal_best import PersonalBest
 from app.model.solution import Solution
@@ -10,7 +10,7 @@ from app.services.solution_service import SolutionService
 from app.utils import float_to_timestr, is_valid_uuid
 
 
-TEMPLATES = Jinja2Templates(directory="./app/view")
+
 
 class SolutionsController:
     @classmethod
