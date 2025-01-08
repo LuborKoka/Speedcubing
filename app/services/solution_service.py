@@ -221,7 +221,7 @@ class SolutionService:
         }
     
     @classmethod
-    async def set_new_personal_best(cls, old: PersonalBest, new: AverageDetails, db: Session):
+    def set_new_personal_best(cls, old: PersonalBest, new: AverageDetails, db: Session):
         """
         Set a new personal best (PB) for a specific puzzle and update the database.
 

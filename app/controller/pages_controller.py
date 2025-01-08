@@ -1,6 +1,6 @@
 from fastapi.responses import HTMLResponse
 from sqlmodel import Session
-from app.constants import TEMPLATES
+from app.constants import PUZZLES, TEMPLATES
 from app.services.scramble_service import ScrambleService
 from app.services.solution_service import SolutionService
 from app.utils import float_to_timestr, get_cubes
@@ -8,8 +8,20 @@ from app.utils import float_to_timestr, get_cubes
 
 class PagesController:
     @classmethod
-    def serve_index_file(cls):
-        html = TEMPLATES.get_template('pages/index.html').render()
+    def serve_index_file(cls, db: Session):
+        cubes = []
+        for puzzle in PUZZLES:
+            pb = SolutionService.get_personal_best(puzzle, db)
+            cubes.append({
+                'puzzle': puzzle,
+                'size': int(puzzle[0]),
+                'status': 'active',
+                'pb': pb
+            })
+
+        html = TEMPLATES.get_template('pages/index.html').render({
+            'cubes': cubes
+        })
         return HTMLResponse(html)
 
     @classmethod

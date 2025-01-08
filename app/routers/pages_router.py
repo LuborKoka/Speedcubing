@@ -7,8 +7,8 @@ router = APIRouter()
 
 
 @router.get('/')
-async def read_root():
-    return PagesController.serve_index_file()
+async def read_root(db = Depends(get_db)):
+    return PagesController.serve_index_file(db)
 
 @router.get("/{puzzle}")
 async def serve_file(puzzle: str, db = Depends(get_db)):

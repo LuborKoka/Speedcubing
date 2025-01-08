@@ -12,23 +12,32 @@
 </head>
 <body>
     <ul>
-        {% for size in range(2, 10) %}
+        {% for cube in cubes %}
             <li>
-                <a href="./{{ size }}x{{ size }}x{{ size }}">
-                    <div class="scene">
-                        <div class="cube {{ size }}x{{ size }}x{{ size }} active">
-                            {% for side in ['F', 'R', 'U'] %}
-                                <div class="cube-side {{ side }}">
-                                    {% for i in range(size ** 2) %}
-                                        <div></div>
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
+                <a href="./{{ cube.puzzle }}">
+                    {% include 'templates/rubiks_cube.html' %}
+
+                    <aside>
+                        <div>   
+                            <span>Single:</span>
+                            <span>{{ cube.pb.single.time_str }}</span>
                         </div>
-                    </div>
+                        <div>   
+                            <span>Average of 5:</span>
+                            <span>{{ cube.pb.avg_five.time_str }}</span>
+                        </div>
+                        <div>   
+                            <span>Average of 12:</span>
+                            <span>{{ cube.pb.avg_twelve.time_str }}</span>
+                        </div>
+                        <div>   
+                            <span>Mean of 100:</span>
+                            <span>{{ cube.pb.mean_hundred.time_str }}</span>
+                        </div>
+                    </aside>
                 </a>
             </li>
-        {% endfor %}  
+        {% endfor %}
     </ul>
 </body>
 </html>
